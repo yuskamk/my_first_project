@@ -1,0 +1,26 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333; /* Задаем базовый цвет, который будет наследоваться */
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Наследуем цвет от родителя */
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}

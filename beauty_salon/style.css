@@ -1,0 +1,221 @@
+body {
+    background-color: #fef7f9; /* Нежный розовый фон */
+    color: #333; /* Цвет текста по умолчанию */
+}
+
+.header {
+    background-color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-bottom: 2px solid #f0c3d1;
+}
+
+.site-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.accent {
+    color: #d94b7e; /* Акцентный цвет для названия */
+}
+
+.site-slogan {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.main-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.main-nav a {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Дочерний селектор */
+.main-nav > ul > li > a {
+    font-weight: bold;
+}
+
+/* Селектор потомков */
+.main-nav a:hover {
+    background-color: #f0c3d1;
+    color: #fff;
+}
+
+/* Соседний селектор */
+.site-title + .site-slogan {
+    font-size: 1.1rem;
+}
+
+.service-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Это правило применится из-за каскада */
+.service-card {
+    border-left: 4px solid #f0c3d1;
+}
+
+/* Специфичность: 0,1,0 (класс) */
+.service-card {
+    background-color: #fff;
+}
+
+/* Специфичность: 0,1,1 (класс + тег) */
+.service-card h3 {
+    color: #d94b7e;
+}
+
+/* Специфичность: 0,2,0 (два класса) - ЭТОТ СТИЛЬ ПРИМЕНИТСЯ */
+.service-card.important {
+    background-color: #fff0f5;
+    border-left-color: #d94b7e;
+}
+
+/* Специфичность: 1,0,0 (id) - ОЧЕНЬ ВЫСОКАЯ, но у нас нет элемента с id="special" */
+#special {
+    background-color: gold !important; /* !important - наивысший приоритет */
+}
+
+.about-section {
+    color: #555; /* Это значение унаследуют дочерние элементы, если у них нет своего цвета */
+    font-family: 'Georgia', serif; /* Это шрифт унаследуется */
+    padding: 2rem; /* Это НЕ наследуется */
+    border: 1px dashed #ccc; /* Это НЕ наследуется */
+}
+
+/* Псевдоклассы для состояний */
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(217, 75, 126, 0.2);
+}
+
+.reviews-list li:nth-child(even) {
+    background-color: #f9f0f3;
+}
+
+.reviews-list li:first-child {
+    font-weight: bold;
+}
+
+/* Псевдоэлементы */
+.site-title::before {
+    content: "✨ ";
+}
+
+.site-title::after {
+    content: " ✨";
+}
+
+.service-card h3::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #f0c3d1;
+    margin-top: 0.5rem;
+}
+
+.section {
+    padding: 3rem 1rem;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #d94b7e;
+}
+
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.contact-info a {
+    color: #f0c3d1; /* Явно задаем цвет, т.к. он не наследуется для ссылок автоматически */
+}
+
+/* CSS-переменные (Custom Properties) */
+:root {
+    --primary-color: #d94b7e;
+    --secondary-color: #f0c3d1;
+    --background-color: #fef7f9;
+    --text-color: #333;
+    --spacing: 1rem;
+}
+
+/* Использование переменных (частично уже применено выше) */
+.header {
+    background-color: var(--background-color);
+}
+
+.accent {
+    color: var(--primary-color);
+}
+
+/* Наследование currentColor */
+.service-card {
+    border-left: 4px solid var(--secondary-color);
+    /* currentColor будет равен color элемента, можно использовать для иконок */
+}
+
+/* Анимации с @keyframes */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .site-title {
+        font-size: 2rem;
+    }
+
+    .services-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --spacing: 0.5rem;
+    }
+
+    .section {
+        padding: 2rem var(--spacing);
+    }
+}
